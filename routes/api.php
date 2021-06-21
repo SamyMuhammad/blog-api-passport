@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+Route::middleware('auth:api')->group(function (){
+    Route::apiResources([
+        'roles' => RoleController::class,
+        'users' => UserController::class,
+        'categories' => CategoryController::class,
+        'tags' => TagController::class,
+        'posts' => PostController::class,
+    ]);
 });
