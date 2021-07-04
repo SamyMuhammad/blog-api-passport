@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::middleware('auth:api')->group(function (){
+// Route::middleware('auth:api')->group(function (){
     Route::apiResources([
         'roles' => RoleController::class,
         'users' => UserController::class,
@@ -31,4 +31,4 @@ Route::middleware('auth:api')->group(function (){
         'tags' => TagController::class,
         'posts' => PostController::class,
     ]);
-});
+// });
