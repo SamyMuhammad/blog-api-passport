@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
-use App\Traits\ResponseHandler;
 
 class RoleController extends Controller
 {
-    use ResponseHandler;
-
     /**
      * Display a listing of the resource.
      *
