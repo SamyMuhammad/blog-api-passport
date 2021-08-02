@@ -23,12 +23,9 @@ class RoleRequest extends FormRequest
      */
     public function rules()
     {
-        $id = '';
-        if ($this->isMethod('PUT') || $this->isMethod('PATCH')){
-            $id = $this->route('role')->id;
-        }
+        $id = getRouteId($this, 'role');
         return [
-            'name' => ['required', 'string', 'min:3', 'max:190', 'regex:/[A-Za-z]+/', 'unique:roles,name,'.$id]
+            'name' => ['required', 'string', 'min:3', 'max:190', 'regex:/^[\p{Arabic}A-Za-z _-]+$/u', 'unique:roles,name,'.$id]
         ];
     }
 }
