@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
@@ -23,7 +24,11 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-// Route::middleware('auth:api')->group(function (){
+Route::post('register', [PassportAuthController::class, 'registerUser']);
+Route::post('login', [PassportAuthController::class, 'loginUser']);
+
+Route::middleware('auth:api')->group(function (){
+    Route::get('user', [PassportAuthController::class, 'authenticatedUserDetails']);
     Route::apiResources([
         'roles' => RoleController::class,
         'users' => UserController::class,
@@ -31,4 +36,4 @@ use Illuminate\Support\Facades\Route;
         'tags' => TagController::class,
         'posts' => PostController::class,
     ]);
-// });
+});
